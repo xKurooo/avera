@@ -1,0 +1,348 @@
+@import "tailwindcss";
+
+/* =========================================================
+   Token warna AVÉRA (design.md bagian 3 dan 15.1).
+   Kode warna antarmuka hanya boleh ditulis di berkas ini.
+   ========================================================= */
+:root {
+  /* palet inti */
+  --batter: #E8D1A7;
+  --caramel: #84592B;
+  --wine: #743014;
+  --olive: #9D9167;
+  --cocoa: #442D1C;
+  /* turunan */
+  --ivory: #F8F1E3;
+  --olive-deep: #5F5A3A;
+  --danger: #A23B22;
+  --line: rgba(255, 255, 255, 0.35);
+  /* kaca */
+  --glass-1: rgba(248, 241, 227, 0.40);
+  --glass-2: rgba(248, 241, 227, 0.60);
+  --glass-dark: rgba(68, 45, 28, 0.75);
+  --glass-solid: rgba(248, 241, 227, 0.92);
+  --glass-dark-solid: rgba(68, 45, 28, 0.92);
+  --glass-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 12px 40px rgba(68, 45, 28, 0.18);
+  --blur: 24px;
+}
+
+/* Blur di ponsel dibatasi 16 px agar tetap ringan (design.md 4.4). */
+@media (max-width: 640px) {
+  :root { --blur: 16px; }
+}
+
+/* Mendaftarkan token agar bisa dipakai sebagai kelas Tailwind, misalnya bg-wine atau text-cocoa. */
+@theme inline {
+  --color-batter: var(--batter);
+  --color-caramel: var(--caramel);
+  --color-wine: var(--wine);
+  --color-olive: var(--olive);
+  --color-cocoa: var(--cocoa);
+  --color-ivory: var(--ivory);
+  --color-olive-deep: var(--olive-deep);
+  --color-danger: var(--danger);
+  --font-sans: var(--font-manrope);
+  --font-serif: var(--font-instrument-serif);
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  color: var(--cocoa);
+  background: var(--batter);
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* =========================================================
+   Latar "Dune": gradasi senja + gelembung buram (design.md 4.3).
+   Dibuat murni CSS, tanpa gambar. Posisinya tetap (fixed) agar kaca selalu
+   punya sesuatu di belakangnya.
+   ========================================================= */
+.dune {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  background: linear-gradient(
+    180deg,
+    var(--ivory) 0%,
+    var(--batter) 30%,
+    var(--caramel) 72%,
+    var(--cocoa) 100%
+  );
+}
+
+.dune-blob {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(60px);
+  opacity: 0.55;
+  animation: drift 16s ease-in-out infinite alternate;
+}
+.dune-blob.b1 { width: 55vmax; height: 55vmax; left: -15vmax; top: 8vh; background: var(--olive); animation-duration: 18s; }
+.dune-blob.b2 { width: 45vmax; height: 45vmax; right: -12vmax; top: 30vh; background: var(--caramel); animation-duration: 14s; }
+.dune-blob.b3 { width: 40vmax; height: 40vmax; left: 20vw; top: -12vmax; background: var(--batter); opacity: 0.8; animation-duration: 20s; }
+.dune-blob.b4 { width: 35vmax; height: 35vmax; left: 10vw; bottom: -14vmax; background: var(--olive); opacity: 0.4; animation-duration: 12s; }
+
+@keyframes drift {
+  from { transform: translate3d(0, 0, 0) scale(1); }
+  to { transform: translate3d(3vw, -2vh, 0) scale(1.06); }
+}
+
+/* =========================================================
+   Tiga tingkat kaca (design.md 4.1 dan 4.2).
+   ========================================================= */
+.glass-1,
+.glass-2,
+.glass-dark {
+  backdrop-filter: blur(var(--blur)) saturate(140%);
+  -webkit-backdrop-filter: blur(var(--blur)) saturate(140%);
+  border: 1px solid var(--line);
+  box-shadow: var(--glass-shadow);
+}
+/* Kaca bening: navigasi dan kapsul, hanya label pendek. */
+.glass-1 { background: var(--glass-1); }
+/* Kaca kartu: boleh teks panjang. Jangan turunkan opasitasnya. */
+.glass-2 { background: var(--glass-2); }
+/* Kaca gelap: teks ivory. */
+.glass-dark { background: var(--glass-dark); color: var(--ivory); }
+
+/* Kaca khusus navbar melayang: lebih pekat (86%) + blur kuat agar saat halaman di-scroll,
+   teks konten di belakangnya tidak menembus atau bertabrakan dengan tulisan navbar & AVÉRA. */
+.glass-nav {
+  background: rgba(248, 241, 227, 0.86);
+  backdrop-filter: blur(24px) saturate(150%);
+  -webkit-backdrop-filter: blur(24px) saturate(150%);
+  border: 1px solid var(--line);
+  box-shadow: var(--glass-shadow);
+}
+
+@media (min-width: 1024px) {
+  .desktop-header-pill {
+    background: rgba(248, 241, 227, 0.86);
+    backdrop-filter: blur(24px) saturate(150%);
+    -webkit-backdrop-filter: blur(24px) saturate(150%);
+    border: 1px solid var(--line);
+    box-shadow: var(--glass-shadow);
+  }
+  /* Di desktop, <nav> sudah berada di dalam .desktop-header-pill, jadi latar/tepi/bayangannya dimatikan
+     agar tidak ada dua layer background yang bertumpuk. */
+  .glass-nav {
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border: 0;
+    box-shadow: none;
+  }
+}
+
+/* Kartu di dalam grid tidak memakai blur agar gulir tetap mulus di ponsel. */
+.card-flat {
+  background: rgba(248, 241, 227, 0.55);
+  border: 1px solid var(--line);
+  box-shadow: 0 6px 20px rgba(68, 45, 28, 0.12);
+}
+
+/* Kapsul nama di bawah kartu item: solid tanpa blur supaya teks selalu terbaca. */
+.capsule-solid {
+  background: var(--glass-solid);
+}
+
+/* Cadangan: jika kaca tidak didukung, semua jadi warna solid yang tetap terbaca. */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .glass-1,
+  .glass-2 { background: var(--glass-solid); }
+  .glass-dark { background: var(--glass-dark-solid); }
+}
+@media (prefers-reduced-transparency: reduce) {
+  .glass-1,
+  .glass-2 { background: var(--glass-solid); backdrop-filter: none; -webkit-backdrop-filter: none; }
+  .glass-dark { background: var(--glass-dark-solid); backdrop-filter: none; -webkit-backdrop-filter: none; }
+  .card-flat { background: var(--glass-solid); }
+  .desktop-header-pill { backdrop-filter: none; -webkit-backdrop-filter: none; }
+}
+
+/* =========================================================
+   Komponen dasar (design.md bagian 7).
+   ========================================================= */
+
+/* Label kecil kapital. */
+.label-caps {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* Tombol utama: wine dengan teks ivory. */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 48px;
+  padding: 0 24px;
+  border-radius: 9999px;
+  background: var(--wine);
+  color: var(--ivory);
+  font-weight: 600;
+  transition: transform 150ms ease, filter 150ms ease;
+}
+.btn-primary:hover { filter: brightness(1.12); transform: translateY(-1px); }
+.btn-primary:active { transform: scale(0.98); }
+.btn-primary:disabled { opacity: 0.5; cursor: not-allowed; transform: none; filter: none; }
+
+/* Tombol sekunder: kaca terang dengan garis tepi. */
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 48px;
+  padding: 0 24px;
+  border-radius: 9999px;
+  background: var(--glass-2);
+  border: 1px solid rgba(132, 89, 43, 0.4);
+  color: var(--cocoa);
+  font-weight: 600;
+  transition: transform 150ms ease, background 150ms ease;
+}
+.btn-secondary:hover { background: var(--glass-solid); transform: translateY(-1px); }
+.btn-secondary:active { transform: scale(0.98); }
+
+/* Tombol bahaya untuk hapus. */
+.btn-danger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 48px;
+  padding: 0 24px;
+  border-radius: 9999px;
+  background: var(--danger);
+  color: var(--ivory);
+  font-weight: 600;
+}
+.btn-danger:hover { filter: brightness(1.1); }
+
+/* Chip pilihan. */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  padding: 0 16px;
+  border-radius: 9999px;
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+  border: 1px solid rgba(132, 89, 43, 0.3);
+  background: var(--glass-2);
+  color: var(--cocoa);
+  transition: background 150ms ease;
+}
+.chip[aria-pressed="true"],
+.chip[aria-checked="true"],
+.chip[aria-selected="true"] {
+  background: var(--cocoa);
+  border-color: var(--cocoa);
+  color: var(--ivory);
+}
+
+/* Isian formulir. */
+.field {
+  width: 100%;
+  min-height: 48px;
+  padding: 12px 16px;
+  border-radius: 16px;
+  background: rgba(248, 241, 227, 0.7);
+  border: 1px solid rgba(132, 89, 43, 0.4);
+  color: var(--cocoa);
+}
+.field::placeholder { color: rgba(68, 45, 28, 0.6); }
+
+/* Cincin fokus: cocoa di latar terang, ivory di latar gelap (design.md 12). */
+:focus-visible {
+  outline: 2px solid var(--cocoa);
+  outline-offset: 2px;
+}
+.glass-dark :focus-visible,
+.on-dark:focus-visible {
+  outline-color: var(--ivory);
+}
+
+/* Swatch warna: lingkaran dengan tepi ivory. */
+.swatch {
+  border-radius: 9999px;
+  border: 2px solid var(--ivory);
+  box-shadow: 0 2px 6px rgba(68, 45, 28, 0.25);
+}
+
+/* Kartu "Tambah" bergaris putus. */
+.dashed-card {
+  border: 2px dashed rgba(68, 45, 28, 0.35);
+  background: rgba(248, 241, 227, 0.35);
+}
+
+/* Latar redup di belakang dialog. */
+.backdrop {
+  background: rgba(68, 45, 28, 0.45);
+}
+
+/* Dialog berada di atas latar redup, jadi kacanya dibuat lebih pekat agar teks tetap jelas. */
+.glass-strong {
+  background: rgba(248, 241, 227, 0.88);
+}
+
+/* =========================================================
+   Gerak (design.md bagian 11).
+   ========================================================= */
+.fade-in { animation: fade-in 200ms ease both; }
+.rise-in { animation: rise-in 250ms ease both; }
+.sheet-in { animation: sheet-in 250ms ease both; }
+.shimmer {
+  background: linear-gradient(
+    110deg,
+    rgba(248, 241, 227, 0.08) 25%,
+    rgba(248, 241, 227, 0.28) 50%,
+    rgba(248, 241, 227, 0.08) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.8s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  from { background-position: 200% 0; }
+  to { background-position: -200% 0; }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes sheet-in {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Gerak dimatikan bila pengguna memintanya. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* Menyembunyikan scrollbar pada baris chip yang bisa digeser. */
+.no-scrollbar { scrollbar-width: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }

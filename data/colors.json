@@ -1,0 +1,84 @@
+{
+  "_info": "Draft data warna AVÉRA. Sumber kebenaran data warna di aplikasi. Letakkan di data/colors.json. Asosiasi warna zodiak berbeda-beda di tiap sumber; draft ini memakai asosiasi umum (berdasarkan elemen dan kebiasaan populer), bukan satu sumber tertentu.",
+  "zodiac": [
+    { "id": "aries",       "name": "Aries",       "dates": "21 Mar - 19 Apr", "element": "Api",   "colors": [ { "name": "Merah Bata",       "hex": "#B5432F" }, { "name": "Jingga Hangat",    "hex": "#D9822B" } ] },
+    { "id": "taurus",      "name": "Taurus",      "dates": "20 Apr - 20 Mei", "element": "Tanah", "colors": [ { "name": "Hijau Sage",       "hex": "#8FA37E" }, { "name": "Cokelat Tanah",    "hex": "#8A6A4F" } ] },
+    { "id": "gemini",      "name": "Gemini",      "dates": "21 Mei - 20 Jun", "element": "Udara", "colors": [ { "name": "Kuning Mentega",   "hex": "#F0D56B" }, { "name": "Biru Langit",      "hex": "#8FB8D8" } ] },
+    { "id": "cancer",      "name": "Cancer",      "dates": "21 Jun - 22 Jul", "element": "Air",   "colors": [ { "name": "Putih Mutiara",    "hex": "#F1EEE8" }, { "name": "Biru Laut Lembut", "hex": "#7FA6B8" } ] },
+    { "id": "leo",         "name": "Leo",         "dates": "23 Jul - 22 Agu", "element": "Api",   "colors": [ { "name": "Emas Madu",        "hex": "#D4A23C" }, { "name": "Oranye Senja",     "hex": "#E08A3E" } ] },
+    { "id": "virgo",       "name": "Virgo",       "dates": "23 Agu - 22 Sep", "element": "Tanah", "colors": [ { "name": "Hijau Zaitun",     "hex": "#7A8450" }, { "name": "Cokelat Kayu",     "hex": "#7B5B43" } ] },
+    { "id": "libra",       "name": "Libra",       "dates": "23 Sep - 22 Okt", "element": "Udara", "colors": [ { "name": "Biru Debu",        "hex": "#8AA4C0" }, { "name": "Abu Pasir",        "hex": "#BDB5AA" } ] },
+    { "id": "scorpio",     "name": "Scorpio",     "dates": "23 Okt - 21 Nov", "element": "Air",   "colors": [ { "name": "Merah Anggur",     "hex": "#6E1F2E" }, { "name": "Hitam Arang",      "hex": "#2B2B2B" } ] },
+    { "id": "sagittarius", "name": "Sagitarius",  "dates": "22 Nov - 21 Des", "element": "Api",   "colors": [ { "name": "Ungu Anggur",      "hex": "#6B4C9A" }, { "name": "Biru Royal",       "hex": "#3F5FA8" } ] },
+    { "id": "capricorn",   "name": "Capricorn",   "dates": "22 Des - 19 Jan", "element": "Tanah", "colors": [ { "name": "Cokelat Kopi",     "hex": "#5A4030" }, { "name": "Abu Batu",         "hex": "#7A7A78" } ] },
+    { "id": "aquarius",    "name": "Aquarius",    "dates": "20 Jan - 18 Feb", "element": "Udara", "colors": [ { "name": "Biru Turkuaz",     "hex": "#3FA7A3" }, { "name": "Perak",            "hex": "#B8BCC2" } ] },
+    { "id": "pisces",      "name": "Pisces",      "dates": "19 Feb - 20 Mar", "element": "Air",   "colors": [ { "name": "Hijau Laut",       "hex": "#5E9C8F" }, { "name": "Ungu Kabut",       "hex": "#9C92B8" } ] }
+  ],
+  "undertone": [
+    {
+      "id": "warm",
+      "name": "Warm",
+      "hint": "Kulit cenderung keemasan atau kekuningan; urat nadi tampak kehijauan.",
+      "colors": [
+        { "name": "Olive",         "hex": "#77803F" },
+        { "name": "Terakota",      "hex": "#C0623F" },
+        { "name": "Mustard",       "hex": "#D1A024" },
+        { "name": "Camel",         "hex": "#B98B54" },
+        { "name": "Cokelat Hangat", "hex": "#7B4A2D" }
+      ]
+    },
+    {
+      "id": "cool",
+      "name": "Cool",
+      "hint": "Kulit cenderung kemerahan atau kebiruan; urat nadi tampak kebiruan.",
+      "colors": [
+        { "name": "Navy",          "hex": "#243B5C" },
+        { "name": "Hijau Zamrud",  "hex": "#1F7A5C" },
+        { "name": "Biru Royal",    "hex": "#3B5BA9" },
+        { "name": "Plum",          "hex": "#6B3F6E" },
+        { "name": "Abu Dingin",    "hex": "#8E98A5" }
+      ]
+    },
+    {
+      "id": "neutral",
+      "name": "Neutral",
+      "hint": "Campuran, tidak condong ke warm maupun cool; urat nadi tampak campuran.",
+      "colors": [
+        { "name": "Hijau Sage",    "hex": "#8FA37E" },
+        { "name": "Taupe",         "hex": "#8B7D6B" },
+        { "name": "Teal Lembut",   "hex": "#4F8A8B" },
+        { "name": "Biru Kelabu",   "hex": "#7E94A8" },
+        { "name": "Mauve Debu",    "hex": "#A58C9A" }
+      ]
+    }
+  ],
+  "neutrals": [
+    { "name": "Putih Tulang", "hex": "#F4EFE6" },
+    { "name": "Krem",         "hex": "#EAD9B7" },
+    { "name": "Cokelat Muda", "hex": "#B08D6A" },
+    { "name": "Abu Muda",     "hex": "#C9C6C0" },
+    { "name": "Abu Tua",      "hex": "#5E5E5E" },
+    { "name": "Denim",        "hex": "#4A6382" },
+    { "name": "Hitam",        "hex": "#222222" }
+  ],
+  "basicColors": [
+    { "name": "Merah",      "hex": "#C0392B" },
+    { "name": "Oranye",     "hex": "#E67E22" },
+    { "name": "Kuning",     "hex": "#F1C40F" },
+    { "name": "Hijau",      "hex": "#2E8B57" },
+    { "name": "Hijau Muda", "hex": "#A6D69A" },
+    { "name": "Biru",       "hex": "#2F6DB5" },
+    { "name": "Biru Muda",  "hex": "#8EC5E8" },
+    { "name": "Tosca",      "hex": "#2EB8A6" },
+    { "name": "Ungu",       "hex": "#7E57C2" },
+    { "name": "Merah Muda", "hex": "#E8A0B4" },
+    { "name": "Marun",      "hex": "#6E1F2E" },
+    { "name": "Cokelat",    "hex": "#7B4F2E" },
+    { "name": "Krem",       "hex": "#EAD9B7" },
+    { "name": "Putih",      "hex": "#FAFAFA" },
+    { "name": "Hitam",      "hex": "#222222" },
+    { "name": "Abu-abu",    "hex": "#8E8E8E" },
+    { "name": "Emas",       "hex": "#D4AF37" },
+    { "name": "Perak",      "hex": "#C0C0C0" }
+  ]
+}
